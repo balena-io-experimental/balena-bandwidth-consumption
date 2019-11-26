@@ -1,0 +1,6 @@
+FROM balenalib/%%BALENA_MACHINE_NAME%%-alpine:latest
+
+RUN apk --no-cache add nethogs vnstat net-tools bmon tcpdump
+
+COPY entrypoint.sh /bin/entrypoint.sh
+CMD ["/bin/sh", "-c", "entrypoint.sh output=${BWC_BMON_OUTPUT} interfaces=${BWC_BMON_INTERFACES} duration=${BWC_BMON_DURATION}"]
